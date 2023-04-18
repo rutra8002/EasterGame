@@ -185,6 +185,9 @@ def show_menu():
 
                 if max_eggs_rect.collidepoint(pos):
                     MAX_EGGS += 1
+                    if MAX_EGGS > 20:
+                        MAX_EGGS = 2
+                    return
         pygame.display.update()
 
 running = True
