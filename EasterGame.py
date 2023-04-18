@@ -12,7 +12,7 @@ pygame.display.set_caption("Game")
 
 speed = 0.5
 
-MAX_EGGS = 2000
+MAX_EGGS = 200
 
 POINTS = 0
 POINTS1 = 0
