@@ -12,7 +12,7 @@ pygame.display.set_caption("Game")
 
 speed = 0.5
 
-MAX_EGGS = 2
+MAX_EGGS = 2000
 
 POINTS = 0
 POINTS1 = 0
@@ -26,14 +26,14 @@ max_obstacles = 10
 current_obstacles = 0
 current_obstacles2 = 0
 
-
+egg = pygame.image.load("./img/egg.png")
 class Egg:
     def __init__(self, x, y, num):
         self.x = x
         self.y = y
         self.num = num
         self.Visible = True
-        self.egg_img = pygame.image.load("./img/egg.png")
+        self.egg_img = egg
         self.egg_img = pygame.transform.scale(self.egg_img, (100, 100))
 
     def draw(self):
@@ -86,9 +86,6 @@ class Player:
         screen.blit(self.player_img, (x, y))
 
 
-
-
-
 class Square():
     def __init__(self, x, y, l):
         self.x = x
@@ -127,7 +124,7 @@ class obstacle:
             pygame.draw.rect(screen, self.color, self.rect)
 
 def show_menu():
-    global MAX_EGGS  # we need to use the global variable MAX_EGGS
+    global MAX_EGGS
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -138,7 +135,7 @@ def show_menu():
         title_rect = title.get_rect(center=(width/2, 200))
         screen.blit(title, title_rect)
 
-        # render the current value of MAX_EGGS
+
         max_eggs_text = font.render(f"Eggs: {MAX_EGGS}", True, (0, 0, 0))
         max_eggs_rect = max_eggs_text.get_rect(center=(width/2, 300))
         screen.blit(max_eggs_text, max_eggs_rect)
@@ -159,13 +156,13 @@ def show_menu():
         impossible_rect = impossible.get_rect(center=(width/2, 700))
         screen.blit(impossible, impossible_rect)
 
-        # check for mouse clicks
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:  # Check if left mouse button is clicked
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 pos = pygame.mouse.get_pos()
 
                 if easy_rect.collidepoint(pos):
@@ -185,12 +182,9 @@ def show_menu():
                     GAMEMODE = "IMPOSSIBLE"
                     return
 
-                # if the user clicks on the "Max Eggs" text, allow them to change the value
-                if max_eggs_rect.collidepoint(pos):
-                    MAX_EGGS += 1  # increase the value of MAX_EGGS by 1
-                    if MAX_EGGS > 16:
-                        MAX_EGGS = 2  # if MAX_EGGS is greater than 16, reset it to 2
 
+                if max_eggs_rect.collidepoint(pos):
+                    MAX_EGGS += 1
         pygame.display.update()
 
 running = True
