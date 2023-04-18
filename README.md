@@ -1,2 +1,2 @@
 # EasterGame
-Made by KK
+Made mostly by KK
