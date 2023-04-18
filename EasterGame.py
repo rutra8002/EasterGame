@@ -14,11 +14,6 @@ speed = 0.5
 
 MAX_EGGS = 2
 
-f = open("options.txt", "r")
-
-GAMEMODE = f.readline()
-GAMEMODE = GAMEMODE.strip()
-MAX_EGGS = int(f.readline())
 POINTS = 0
 POINTS1 = 0
 
